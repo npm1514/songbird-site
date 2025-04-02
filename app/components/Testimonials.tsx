@@ -1,0 +1,106 @@
+"use client";
+
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
+const testimonials = [
+  {
+    name: "Liat Peled",
+    title: "VP Product",
+    quote:
+      "Thank you for raising to the challenge and helping us transform our strategy and vision into a beautiful and unique app! Thank you for constantly pushing our limits to provide our customers with the best user experience!",
+  },
+  {
+    name: "Ido Fridman",
+    title: "VP Marketing and Biz Dev",
+    quote:
+      "Here's my number: +972-52-4576588. I guess this says it all about my level of satisfaction with UXPERT's work and character.",
+  },
+  {
+    name: "Tal Lupo",
+    title: "UX Manager",
+    quote:
+      "Thank you for your uncompromising professionalism and innovative work, unique and creative design and for your brilliant animation. And to top it all – thank you for your outstanding cooperation and caring.",
+  },
+  {
+    name: "Amichai Ziv",
+    title: "CEO",
+    quote:
+      "It's been an amazing experience and a great honor working with you. You are top class experts. Quick to learn, sharp-minded and full of creativity backed by years of experience.",
+  },
+];
+
+export default function Testimonials() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const next = () => {
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const prev = () => {
+    setCurrentIndex((prev) =>
+      prev === 0 ? testimonials.length - 1 : prev - 1
+    );
+  };
+
+  return (
+    <section className="py-20 px-4">
+      <div className="max-w-4xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold mb-4">What They Say</h2>
+          <p className="text-xl italic">We swear we didn't force them to</p>
+        </div>
+
+        <div className="relative">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentIndex}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5 }}
+              className="text-center"
+            >
+              <blockquote className="text-xl mb-8">
+                "{testimonials[currentIndex].quote}"
+              </blockquote>
+              <div className="font-bold text-lg">
+                {testimonials[currentIndex].name}
+              </div>
+              <div className="text-gray-600">
+                {testimonials[currentIndex].title}
+              </div>
+            </motion.div>
+          </AnimatePresence>
+
+          <div className="flex justify-center mt-8 space-x-4">
+            <button
+              onClick={prev}
+              className="p-2 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors"
+            >
+              ←
+            </button>
+            <button
+              onClick={next}
+              className="p-2 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors"
+            >
+              →
+            </button>
+          </div>
+
+          <div className="flex justify-center mt-4 space-x-2">
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`w-2 h-2 rounded-full transition-colors ${
+                  index === currentIndex ? "bg-black" : "bg-gray-300"
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
