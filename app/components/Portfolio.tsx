@@ -5,29 +5,32 @@ import { motion } from "framer-motion";
 import { Suspense } from "react";
 import LoadingSpinner from "./LoadingSpinner";
 
-const placeholderImage =
-  "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx4eHRoaHSQtJSAyVC08MTY3LjIyOUFTRjo/Tj4yMkhiS0hHSUZJPVBQUFBQUFBQUFBQUH/2wBDAR0XFyAeIBogHh4gIiAoJCAoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k=";
+type Project = {
+  title: string;
+  subtitle: string;
+  image: string;
+};
 
 const projects: Project[] = [
   {
     title: "Pizza App & Site",
     subtitle: "Food. Fast. Fun!",
-    image: placeholderImage,
+    image: "/images/portfolio/pizza.jpeg",
   },
   {
     title: "Mobility Payments",
     subtitle: "The easy way!",
-    image: placeholderImage,
+    image: "/images/portfolio/blobguys.jpg",
   },
   {
     title: "Train Scheduling",
     subtitle: "Plan your ride",
-    image: placeholderImage,
+    image: "/images/portfolio/train.jpg",
   },
   {
     title: "Pension Clearinghouse",
     subtitle: "Caring about your future",
-    image: placeholderImage,
+    image: "/images/portfolio/beach.jpg",
   },
 ];
 
@@ -35,42 +38,49 @@ export default function Portfolio() {
   return (
     <Suspense fallback={<LoadingSpinner />}>
       <section className="py-20 px-4 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="section-title"
-            >
-              Our Work
-            </motion.h2>
-            <motion.h3
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="section-subtitle"
-            >
-              <span className="font-bold">We love our work</span>
-              <br />
-              <span className="italic text-gray-600">and it shows</span>
-            </motion.h3>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
-            >
-              With hundreds of projects completed for industry-leading clients,
-              we've done almost every type of project. Many of which became
-              award winners and made us proud parents.
-            </motion.p>
+        <div>
+          <div className="text-center mb-16 flex">
+            <div className="flex-1">
+              <div className="border-[2px] border-brand-yellow w-[60px] mb-6" />
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="text-6xl font-bold mb-6 flex-1 font-bebas uppercase section-title text-left"
+              >
+                Our
+                <br />
+                Work
+              </motion.h2>
+            </div>
+            <div className="flex-1">
+              <motion.h3
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="section-subtitle"
+              >
+                <span className="font-bold">We love our work</span>
+                <br />
+                <span className="italic text-gray-600">and it shows</span>
+              </motion.h3>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+              >
+                With hundreds of projects completed for industry-leading
+                clients, we've done almost every type of project. Many of which
+                became award winners and made us proud parents.
+              </motion.p>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12 hover:cursor-pointer">
             {projects.map((project, index) => (
               <motion.div
                 key={index}
