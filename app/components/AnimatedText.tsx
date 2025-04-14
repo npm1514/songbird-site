@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
@@ -18,6 +18,7 @@ export default function AnimatedText({
 }: AnimatedTextProps) {
   const [currentText, setCurrentText] = useState(initialText);
   const [isAnimating, setIsAnimating] = useState(false);
+  console.log(isAnimating);
 
   useEffect(() => {
     const startAnimation = () => {

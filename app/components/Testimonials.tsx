@@ -52,7 +52,7 @@ export default function Testimonials() {
             <h2 className="text-6xl font-bold mb-6 flex-1 font-bebas uppercase text-left">What<br />They Say</h2>
           </div>
           <div className="flex-1">
-            <p className="text-xl italic">We swear we didn't force them to</p>
+            <p className="text-xl italic">We swear we didn&apos;t force them to</p>
           </div>
         </div>
 
@@ -67,7 +67,7 @@ export default function Testimonials() {
               className="text-center"
             >
               <blockquote className="text-xl mb-8">
-                "{testimonials[currentIndex].quote}"
+              &apos;{testimonials[currentIndex].quote}&apos;
               </blockquote>
               <div className="font-bold text-lg">
                 {testimonials[currentIndex].name}

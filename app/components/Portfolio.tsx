@@ -74,7 +74,7 @@ export default function Portfolio() {
                 className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
               >
                 With hundreds of projects completed for industry-leading
-                clients, we've done almost every type of project. Many of which
+                clients, we&apos;ve done almost every type of project. Many of which
                 became award winners and made us proud parents.
               </motion.p>
             </div>

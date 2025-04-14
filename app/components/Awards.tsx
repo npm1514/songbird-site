@@ -44,7 +44,7 @@ export default function Awards() {
             <h2 className="text-6xl font-bold mb-6 flex-1 font-bebas uppercase text-left">38<br/>Awards</h2>
           </div>
           <p className="text-xl">
-            We're proud to take part in our clients' success
+            We&apos;re proud to take part in our clients&apos; success
           </p>
         </div>
 
