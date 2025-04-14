@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const testimonials = [
   {
@@ -32,15 +33,35 @@ const testimonials = [
 
 export default function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(0);
 
   const next = () => {
+    setDirection(1);
     setCurrentIndex((prev) => (prev + 1) % testimonials.length);
   };
 
   const prev = () => {
+    setDirection(-1);
     setCurrentIndex((prev) =>
       prev === 0 ? testimonials.length - 1 : prev - 1
     );
+  };
+
+  const slideVariants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? 750 : -750,
+      opacity: 0
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1
+    },
+    exit: (direction: number) => ({
+      zIndex: 0,
+      x: direction < 0 ? 750 : -750,
+      opacity: 0
+    })
   };
 
   return (
@@ -56,18 +77,22 @@ export default function Testimonials() {
           </div>
         </div>
 
-        <div className="relative">
-          <AnimatePresence mode="wait">
+        <div className="relative overflow-hidden">
+          <AnimatePresence initial={false} custom={direction} mode="wait">
             <motion.div
               key={currentIndex}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.5 }}
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{
+                opacity: { duration: 0.1 }
+              }}
               className="text-center"
             >
               <blockquote className="text-xl mb-8">
-              &apos;{testimonials[currentIndex].quote}&apos;
+                &quot;{testimonials[currentIndex].quote}&quot;
               </blockquote>
               <div className="font-bold text-lg">
                 {testimonials[currentIndex].name}
@@ -81,25 +106,29 @@ export default function Testimonials() {
           <div className="flex justify-center mt-8 space-x-4">
             <button
               onClick={prev}
-              className="p-2 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors"
+              className="p-2 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors flex items-center justify-center"
             >
-              ←
+              <FaChevronLeft className="w-4 h-4" />
             </button>
             <button
               onClick={next}
-              className="p-2 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors"
+              className="p-2 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors flex items-center justify-center"
             >
-              →
+              <FaChevronRight className="w-4 h-4" />
             </button>
           </div>
 
-          <div className="flex justify-center mt-4 space-x-2">
+          <div className="flex justify-center mt-4 gap-2">
             {testimonials.map((_, index) => (
               <button
                 key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`w-2 h-2 rounded-full transition-colors ${index === currentIndex ? "bg-black" : "bg-gray-300"
-                  }`}
+                onClick={() => {
+                  setDirection(index > currentIndex ? 1 : -1);
+                  setCurrentIndex(index);
+                }}
+                className={`w-2 h-2 rounded-full transition-colors ${
+                  index === currentIndex ? "bg-black" : "bg-gray-300"
+                }`}
               />
             ))}
           </div>
