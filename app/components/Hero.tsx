@@ -1,13 +1,16 @@
 "use client";
 
 import Link from "next/link";
+import AnimatedText from "./AnimatedText";
 
 export default function Hero() {
   return (
     <section className="h-screen flex items-center justify-center bg-brand-yellow">
-      <div>
-        <h1 className="text-5xl md:text-8xl font-bebas m-4 uppercase tracking-tight max-w-[960px] lg:mx-auto">
-          <span className="block text-white">Our</span>
+      <div className="w-full max-w-[1152px] mx-auto">
+        <h1 className="text-5xl md:text-[150px] font-bebas m-4 uppercase tracking-tight lg:mx-auto">
+          <span className="block text-white">
+            <AnimatedText initialText="Our" finalText="Your" />
+          </span>
           <span className="block text-black">Experience Matters</span>
         </h1>
         <Link

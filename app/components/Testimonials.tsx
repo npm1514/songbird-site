@@ -45,10 +45,15 @@ export default function Testimonials() {
 
   return (
     <section className="py-20 px-4">
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">What They Say</h2>
-          <p className="text-xl italic">We swear we didn't force them to</p>
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-16 flex flex-col md:flex-row items-center">
+          <div className="flex-1">
+            <div className="border-[2px] border-brand-yellow w-[60px] mb-6" />
+            <h2 className="text-6xl font-bold mb-6 flex-1 font-bebas uppercase text-left">What<br />They Say</h2>
+          </div>
+          <div className="flex-1">
+            <p className="text-xl italic">We swear we didn't force them to</p>
+          </div>
         </div>
 
         <div className="relative">
@@ -93,9 +98,8 @@ export default function Testimonials() {
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`w-2 h-2 rounded-full transition-colors ${
-                  index === currentIndex ? "bg-black" : "bg-gray-300"
-                }`}
+                className={`w-2 h-2 rounded-full transition-colors ${index === currentIndex ? "bg-black" : "bg-gray-300"
+                  }`}
               />
             ))}
           </div>

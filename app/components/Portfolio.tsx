@@ -37,9 +37,9 @@ const projects: Project[] = [
 export default function Portfolio() {
   return (
     <Suspense fallback={<LoadingSpinner />}>
-      <section className="py-20 px-4 bg-white">
-        <div>
-          <div className="text-center mb-16 flex">
+      <section className="py-20 px-4 bg-white" id="portfolio">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16 flex flex-col md:flex-row">
             <div className="flex-1">
               <div className="border-[2px] border-brand-yellow w-[60px] mb-6" />
               <motion.h2

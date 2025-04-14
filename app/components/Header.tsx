@@ -1,11 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsMenuOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <header className="fixed w-full bg-white z-50">
@@ -44,14 +58,18 @@ export default function Header() {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
+            ref={menuRef}
             initial={{ x: "-100%" }}
             animate={{ x: 0 }}
             exit={{ x: "-100%" }}
             transition={{ type: "spring", damping: 20 }}
             className="fixed inset-y-0 left-0 w-64 bg-white shadow-lg z-40"
           >
-            <div className="p-4">
-              <div className="flex flex-col space-y-6">
+            <div className="p-4 h-full">
+            <Link href="/" className="text-2xl font-bold block text-center">
+              Songbird
+            </Link>
+              <div className="flex flex-col space-y-6 justify-center items-center h-full pb-8">
                 <Link
                   href="/"
                   className="text-xl hover:text-gray-600 transition-colors"
@@ -59,31 +77,25 @@ export default function Header() {
                   Home
                 </Link>
                 <Link
-                  href="#about"
+                  href="/#about"
                   className="text-xl hover:text-gray-600 transition-colors"
                 >
                   About
                 </Link>
                 <Link
-                  href="#works"
+                  href="/#portfolio"
                   className="text-xl hover:text-gray-600 transition-colors"
                 >
                   Works
                 </Link>
                 <Link
-                  href="#blog"
-                  className="text-xl hover:text-gray-600 transition-colors"
-                >
-                  Blog
-                </Link>
-                <Link
-                  href="#join"
+                  href="/contact"
                   className="text-xl bg-brand-yellow text-white px-6 py-2 rounded-md hover:bg-brand-yellow/90 transition-colors"
                 >
                   JOIN
                 </Link>
                 <Link
-                  href="#contact"
+                  href="/contact"
                   className="text-xl hover:text-gray-600 transition-colors"
                 >
                   Contact

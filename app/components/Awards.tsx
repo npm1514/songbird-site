@@ -36,25 +36,28 @@ export default function Awards() {
   }, []);
 
   return (
-    <section id="awards-section" className="py-20 px-4 bg-black text-white">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">Awards</h2>
+    <section id="awards-section" className="py-20 px-4 bg-gray-50 text-black">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-16 flex flex-col md:flex-row items-center">
+          <div className="flex-1">
+            <div className="border-[2px] border-brand-yellow w-[60px] mb-6" />
+            <h2 className="text-6xl font-bold mb-6 flex-1 font-bebas uppercase text-left">38<br/>Awards</h2>
+          </div>
           <p className="text-xl">
             We're proud to take part in our clients' success
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-6 gap-8">
           {awards.map((award, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: index * 0.2 }}
-              className="text-center"
+              className="text-center flex"
             >
-              <motion.div className="text-5xl font-bold mb-2">
+              <motion.div className="text-5xl font-bold mb-2 text-brand-yellow">
                 {counts[index]}
               </motion.div>
               <h3 className="text-xl">{award.title}</h3>

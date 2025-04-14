@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 interface ButtonProps {
   children: React.ReactNode;
   onClick?: () => void;
@@ -13,22 +15,26 @@ const Button = ({ children, onClick }: ButtonProps) => (
 
 export default function Contact() {
   return (
-    <section className="py-20 px-4 bg-black text-white">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">Contact Us</h2>
-          <p className="text-xl">Get in touch with us for your next project</p>
+    <section className="py-20 px-4 bg-gray-50 text-black">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-16 flex flex-col md:flex-row items-center">
+          <div className="flex-1">
+            <div className="border-[2px] border-brand-yellow w-[60px] mb-6" />
+            <h2 className="text-6xl font-bold mb-6 flex-1 font-bebas uppercase text-left">Contact<br />Us</h2>
+          </div>
+          <div className="flex flex-col flex-1 gap-8">
+            <p className="text-xl">Get in touch with us for your next project</p>
+            <Link href="/contact">
+              <Button
+              >
+                Contact Now
+              </Button>
+            </Link>
+
+          </div>
         </div>
 
-        <div className="flex justify-center">
-          <Button
-            onClick={() => {
-              // Your click handler logic here
-            }}
-          >
-            Contact Now
-          </Button>
-        </div>
+
       </div>
     </section>
   );
